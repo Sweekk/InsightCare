@@ -1,0 +1,3 @@
+import os
+
+FIREBASE_SERVICE_ACCOUNT = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
