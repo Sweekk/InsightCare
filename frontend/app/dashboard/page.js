@@ -1,209 +1,3 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import {
-//   getPatients,
-//   getDoctorReport,
-//   getCurrentDoctor,
-// } from "@/lib/apiClient";
-
-// import StatCard from "@/components/StatCard";
-// import PatientCard from "@/components/PatientCard";
-// import DoctorReportCard from "@/components/DoctorReportCard";
-// import AddPatientModal from "@/components/AddPatientModal";
-
-// export default function DashboardPage() {
-//   const router = useRouter();
-
-//   const [doctor, setDoctor] = useState(null);
-//   const [patients, setPatients] = useState([]);
-//   const [report, setReport] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [showModal, setShowModal] = useState(false);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-
-//     if (!token) {
-//       router.push("/login");
-//       return;
-//     }
-
-//     // async function loadData() {
-//     //   try {
-//     //     const doctorInfo = await getCurrentDoctor();
-//     //     const patientData = await getPatients();
-//     //     const doctorReport = await getDoctorReport();
-
-//     //     setDoctor(doctorInfo);
-//     //     setPatients(patientData || []);
-//     //     setReport(doctorReport || null);
-//     //   } catch (err) {
-//     //     console.error("Dashboard Load Error:", err);
-//     //   } finally {
-//     //     setLoading(false);
-//     //   }
-//     // }
-//     async function loadData() {
-//   try {
-//     // MOCK DATA
-//     const mockPatients = [
-//       {
-//         id: "1",
-//         name: "Rahul Sharma",
-//         age: 32,
-//         risk: "high",
-//       },
-//       {
-//         id: "2",
-//         name: "Priya Menon",
-//         age: 27,
-//         risk: "moderate",
-//       },
-//       {
-//         id: "3",
-//         name: "Amit Verma",
-//         age: 45,
-//         risk: "low",
-//       },
-//     ];
-
-//     const mockReport = {
-//       summary:
-//         "You handled 12 patients this week. 3 are high risk.",
-//       high_risk_count: 1,
-//       advice:
-//         "Prioritize follow-up sessions for high-risk patients.",
-//     };
-
-//     const mockDoctor = {
-//       name: "Dr. Sweekar",
-//     };
-
-//     setDoctor(mockDoctor);
-//     setPatients(mockPatients);
-//     setReport(mockReport);
-//   } catch (err) {
-//     console.error(err);
-//   } finally {
-//     setLoading(false);
-//   }
-// }
-
-
-//     loadData();
-//   }, [router]);
-
-//   if (loading) {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center">
-//         Loading...
-//       </div>
-//     );
-//   }
-
-//   const highRiskCount = patients.filter(
-//     (p) => p.risk === "high"
-//   ).length;
-
-//   const today = new Date().toLocaleDateString("en-US", {
-//     weekday: "long",
-//     month: "long",
-//     day: "numeric",
-//     year: "numeric",
-//   });
-
-//   return (
-//     <div className="min-h-screen bg-gray-100">
-
-//       {/* HEADER */}
-//       <div className="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white px-10 pt-10 pb-20 rounded-b-3xl shadow-lg">
-//         <p className="uppercase text-sm opacity-80 mb-2">
-//           {today}
-//         </p>
-
-//         <div className="flex justify-between items-center">
-//           <div>
-//             <h1 className="text-4xl font-bold mb-2">
-//               Welcome, {doctor?.name || "Doctor"} 
-//             </h1>
-//             <p className="opacity-80">
-//               Here's your patient overview for today.
-//             </p>
-//           </div>
-
-// <div className="flex gap-4">
-
-//   <button
-//     onClick={() => router.push("/assistant")}
-//     className="bg-yellow-400 text-black px-6 py-3 rounded-xl hover:bg-yellow-300 transition font-semibold"
-//   >
-//      AI Assistant
-//   </button>
-
-//   <button
-//     onClick={() => setShowModal(true)}
-//     className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-xl hover:bg-white/30 transition"
-//   >
-//     + Add Patient
-//   </button>
-
-// </div>
-
-//         </div>
-//       </div>
-
-//       {/* BODY */}
-//       <div className="-mt-12 px-10 pb-10 space-y-10">
-
-//         {/* Stats */}
-//         <div className="grid md:grid-cols-3 gap-6">
-//           <StatCard
-//             title="Total Patients"
-//             value={patients.length}
-//           />
-//           <StatCard
-//             title="High Risk"
-//             value={highRiskCount}
-//             color="text-red-500"
-//           />
-//           <StatCard
-//             title="AI Alerts"
-//             value={report?.high_risk_count || 0}
-//             color="text-yellow-500"
-//           />
-//         </div>
-
-//         {/* AI Insight */}
-//         {report && <DoctorReportCard report={report} />}
-
-//         {/* Recent Patients */}
-//         <div>
-//           <h2 className="text-xl font-semibold mb-6">
-//             Recent Patients
-//           </h2>
-
-//           <div className="grid md:grid-cols-3 gap-6">
-//             {patients.slice(0, 6).map((patient) => (
-//               <PatientCard key={patient.id} patient={patient} />
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-
-//       {showModal && (
-//         <AddPatientModal
-//           onClose={() => setShowModal(false)}
-//           onPatientAdded={(newPatient) =>
-//             setPatients((prev) => [...prev, newPatient])
-//           }
-//         />
-//       )}
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -237,16 +31,34 @@ export default function DashboardPage() {
       return;
     }
 
+        // async function loadData() {
+    //   try {
+    //     const doctorInfo = await getCurrentDoctor();
+    //     const patientData = await getPatients();
+    //     const doctorReport = await getDoctorReport();
+
+    //     setDoctor(doctorInfo);
+    //     setPatients(patientData || []);
+    //     setReport(doctorReport || null);
+    //   } catch (err) {
+    //     console.error("Dashboard Load Error:", err);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // }
+
     async function loadData() {
       try {
         // MOCK DATA
         const mockPatients = [
-          {
-            id: "1",
-            name: "Rahul Sharma",
-            age: 32,
-            risk: "high",
-          },
+{
+  id: "1",
+  name: "Rahul Sharma",
+  age: 32,
+  risk: "high",
+  description: "Rahul has been experiencing persistent low mood, sleep disturbances, and high work-related stress over the past 6 weeks. He reports frequent anxiety episodes and difficulty concentrating. Recent mood logs indicate declining emotional stability, placing him in a high-risk category for major depressive symptoms."
+},
+
           {
             id: "2",
             name: "Priya Menon",
