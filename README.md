@@ -27,15 +27,15 @@
  Ensures that each doctor securely logs into their own account and only accesses their own patient data.
 
 >>Tech Stack
--Frontend
+Frontend
     Next.js (App Router)
     React
     Tailwind CSS
--Backend & Database
+Backend & Database
     Firebase Authentication
     Firestore Database
     Secure Security Rules
--Architecture
+Architecture
     Component-based design
     Protected routes
     API abstraction layer
