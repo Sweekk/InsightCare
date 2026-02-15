@@ -3,42 +3,41 @@ import Link from "next/link";
 export default function PatientCard({ patient }) {
   const riskStyles =
     patient.risk === "high"
-      ? "bg-red-100 text-red-600 border-red-200"
+      ? "bg-red-100 text-red-600"
       : patient.risk === "moderate"
-      ? "bg-yellow-100 text-yellow-700 border-yellow-200"
-      : "bg-green-100 text-green-600 border-green-200";
+      ? "bg-yellow-100 text-yellow-600"
+      : "bg-green-100 text-green-600";
 
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-5 border border-blue-100">
+    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="bg-indigo-100 text-indigo-600 p-4 rounded-full text-xl">
+          👤
+        </div>
 
-      {/* Patient Info */}
-      <div className="mb-4">
-        <h3 className="text-lg font-semibold text-blue-700">
-          {patient.name}
-        </h3>
-        <p className="text-sm text-gray-500">
-          Age: {patient.age}
-        </p>
+        <div>
+          <h3 className="font-semibold text-lg">
+            {patient.name}
+          </h3>
+          <p className="text-sm text-gray-500">
+            Age {patient.age}
+          </p>
+        </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="flex justify-between items-center">
-
-        {/* Risk Badge */}
+      <div className="flex justify-between items-center border-t pt-4">
         <span
-          className={`text-xs font-semibold px-3 py-1 rounded-full border ${riskStyles}`}
+          className={`text-xs px-3 py-1 rounded-full ${riskStyles}`}
         >
-          {patient.risk?.toUpperCase()} RISK
+          {patient.risk} Risk
         </span>
 
-        {/* View Button */}
         <Link
           href={`/patients/${patient.id}`}
-          className="text-sm font-medium text-blue-600 hover:text-blue-800 transition"
+          className="text-sm text-gray-500"
         >
-          View Details →
+          View →
         </Link>
-
       </div>
     </div>
   );

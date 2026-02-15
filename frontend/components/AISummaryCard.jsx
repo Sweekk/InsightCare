@@ -5,7 +5,7 @@ export default function AISummaryCard({ summary }) {
       {/* Header */}
       <div className="flex items-center gap-3 mb-4">
         <div className="bg-blue-100 text-blue-600 p-2 rounded-full text-xl">
-          🤖
+          
         </div>
         <div>
           <h2 className="text-lg font-semibold text-blue-700">

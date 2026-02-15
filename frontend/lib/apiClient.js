@@ -1,6 +1,6 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
-async function getAuthHeader() {
+function getAuthHeaders() {
   const token = localStorage.getItem("token");
 
   return {
@@ -10,32 +10,44 @@ async function getAuthHeader() {
 }
 
 export async function getPatients() {
-  const headers = await getAuthHeader();
-
   const res = await fetch(`${API_BASE}/patients`, {
-    headers,
+    headers: getAuthHeaders(),
   });
 
   return res.json();
 }
 
 export async function getDoctorReport() {
-  const headers = await getAuthHeader();
-
   const res = await fetch(`${API_BASE}/doctor-report`, {
     method: "POST",
-    headers,
+    headers: getAuthHeaders(),
+  });
+
+  return res.json();
+}
+
+export async function getCurrentDoctor() {
+  const res = await fetch(`${API_BASE}/me`, {
+    headers: getAuthHeaders(),
   });
 
   return res.json();
 }
 
 export async function createPatient(data) {
-  const headers = await getAuthHeader();
-
   const res = await fetch(`${API_BASE}/patients`, {
     method: "POST",
-    headers,
+    headers: getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+  return res.json();
+}
+
+export async function sendAIMessage(data) {
+  const res = await fetch(`${API_BASE}/ai-chat`, {
+    method: "POST",
+    headers: getAuthHeaders(),
     body: JSON.stringify(data),
   });
 
